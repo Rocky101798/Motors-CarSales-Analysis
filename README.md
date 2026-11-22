@@ -96,7 +96,7 @@ SQL · Microsoft Excel · Power BI · Miro · PowerPoint / Canva · GitHub
 
 <div align="center">
 
-Built by **Godfrey Siphamandla Moyo** as part of the BrightLearn Data Analytics programme ·
+Built by **Siphamandla Moyo** as part of the BrightLearn Data Analytics programme ·
 [GitHub](https://github.com/Rocky101798) · [LinkedIn](https://www.linkedin.com/in/godfrey-siphamandla-moyo-761aba152)
 
 </div>
