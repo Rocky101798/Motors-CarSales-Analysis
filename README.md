@@ -1,145 +1,102 @@
-# 🚗 Bright Motors Car Sales Analysis
+<div align="center">
 
-## 📌 Project Overview
+# 🚗 Bright Motors — Car Sales Analysis
 
-This project analyzes vehicle sales data from Bright Motors to generate actionable business insights for the new Head of Sales. The goal is to improve sales performance, optimize inventory decisions, and support data-driven expansion strategies.
+**Helping a new Head of Sales decide which cars to stock, how to price them, and where to expand.**
 
-The analysis focuses on identifying high-performing car brands, understanding pricing dynamics, and evaluating regional sales trends using SQL and data visualization tools.
+<img src="https://img.shields.io/badge/SQL-Data%20Cleaning%20%26%20Analysis-4479A1?style=flat-square&logo=databricks&logoColor=white" />
+<img src="https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?style=flat-square&logo=powerbi&logoColor=black" />
+<img src="https://img.shields.io/badge/Excel-Gantt%20%26%20Output-217346?style=flat-square&logo=microsoftexcel&logoColor=white" />
+<img src="https://img.shields.io/badge/Miro-Planning-050038?style=flat-square&logo=miro&logoColor=white" />
+<img src="https://img.shields.io/badge/Status-Complete-10B981?style=flat-square" />
 
----
-
-## 🎯 Project Objectives
-
-* Identify top-performing car makes and models
-* Analyze the relationship between price, condition, and mileage
-* Evaluate sales performance across regions
-* Understand trends in customer purchasing behavior
-* Provide recommendations to improve profitability
+</div>
 
 ---
 
-## 📊 Dataset Description
+## 🎯 The business question
 
-The dataset contains transactional data for car sales, including:
+Bright Motors appointed a new Head of Sales who needs answers fast:
 
-* **Year** – Manufacturing year
-* **Make & Model** – Vehicle brand and type
-* **Body Type** – SUV, Sedan, etc.
-* **Transmission** – Automatic / Manual
-* **State** – Location of sale
-* **Condition** – Vehicle condition rating
-* **Odometer** – Mileage
-* **MMR (Market Value)** – Estimated market price
-* **Selling Price** – Final transaction price
-* **Sale Date** – Date of transaction
+- Which **makes and models** drive the most revenue?
+- How do **price, condition and mileage** relate to each other?
+- Which **regions (states)** perform best, and where should we expand?
+- How do **selling prices compare to market value (MMR)**?
 
----
+## ⚡ Key insights
 
-## 🛠️ Data Processing Steps
+| # | Insight | So what? |
+|---|---|---|
+| 1 | A handful of brands (e.g. BMW, Kia, Volvo) dominate sales volume | Concentrate inventory on proven sellers |
+| 2 | Lower-mileage vehicles consistently sell at higher prices | Prioritise low-mileage stock to lift margin |
+| 3 | Market value (MMR) closely drives final selling price | Use MMR trends to set pricing |
+| 4 | A few states generate a disproportionate share of sales | Target expansion at top-performing regions |
+| 5 | Newer vehicles achieve higher selling prices | Balance stock age against acquisition cost |
 
-The following steps were performed:
+## 🧭 How the analysis flows
 
-* Loaded dataset into SQL environment
+```text
+Raw CSV ──► SQL cleaning ──► Calculated fields ──► SQL analysis ──► Power BI dashboard ──► Presentation
+             (dates, dupes,    (price vs MMR,        (make, model,
+              missing values)   margin %, y/m/d)      state, trends)
+```
 
-* Cleaned and standardized data
+**Calculated fields**
 
-* Converted date column into proper date format
+| Field | Formula |
+|---|---|
+| Price difference | `selling_price − mmr` |
+| Profit margin % | `(selling_price − mmr) / selling_price × 100` |
+| Year / Month / Day | Extracted from `sale_date` |
 
-* Removed duplicates and handled missing values
+## 📁 What's in this repo
 
-* Created calculated fields:
+```text
+Motors-CarSales-Analysis/
+├── 01-brief-and-raw-data/
+│   ├── case-study-brief.pdf                 # The original business brief
+│   └── car_sales_data.csv.gz                # Raw transactional data (compressed)
+├── 02-project-planning/
+│   ├── miro-plan.png                        # Data architecture / analysis plan
+│   ├── miro-board-link.txt                  # Link to the live Miro board
+│   └── gantt-chart.xlsx                     # Project timeline
+├── 03-sql-analysis/
+│   ├── 01_cleaning_final_query.sql          # Cleaning + calculated fields
+│   ├── 02_analysis_queries.sql              # Business questions answered in SQL
+│   └── query-output.xlsb                    # Exported query results
+├── 04-dashboard-and-presentation/
+│   ├── car-sales-dashboard.pbix             # Power BI dashboard
+│   └── vehicle-sales-performance-presentation.pdf
+└── README.md
+```
 
-  * **Revenue** = Selling Price
-  * **Price Difference** = Selling Price − MMR
-  * **Profit Margin (%)** = (Selling Price − MMR) / Selling Price × 100
+> 👉 **Short on time?** Open the [presentation PDF](./04-dashboard-and-presentation/vehicle-sales-performance-presentation.pdf) for the full story in a few slides.
 
-* Extracted time-based features:
+## 🗺️ Analysis plan
 
-  * Year
-  * Month
-  * Day
+<img src="./02-project-planning/miro-plan.png" alt="Miro analysis plan" width="100%" />
 
----
+## 🗂️ Dataset
 
-## 🧰 Tools & Technologies Used
-
-* **SQL (BigQuery / Snowflake / MySQL)**
-* **Microsoft Excel / Power BI**
-* **GitHub**
-* **Miro (Data Architecture)**
-* **PowerPoint / Canva**
-
----
-
-## 🧠 Data Analysis
-
-The dataset was analyzed to identify:
-
-* Revenue by car make and model
-* Sales distribution by year and body type
-* Regional sales performance (state level)
-* Pricing trends over time
-* Relationship between mileage, condition, and price
-
----
-
-## 🔍 Key Insights (Example)
-
-* Certain brands (e.g., BMW, Kia, Volvo) dominate sales volume
-* Vehicles with lower mileage tend to sell at higher prices
-* Market value (MMR) closely influences selling price
-* Some regions generate significantly more sales than others
-* Newer vehicles generally achieve higher selling prices
-
----
+Year · Make · Model · Body type · Transmission · State · Condition · Odometer · MMR (market value) · Selling price · Sale date
 
 ## 🚀 Recommendations
 
-* Focus inventory on high-performing brands and models
-* Prioritize low-mileage vehicles to maximize selling price
-* Expand operations in top-performing states
-* Optimize pricing strategies based on MMR trends
-* Monitor condition and mileage to improve profitability
+1. Focus inventory on high-performing brands and models
+2. Prioritise low-mileage vehicles to maximise selling price
+3. Expand operations in top-performing states
+4. Base pricing strategy on MMR trends
+5. Track condition and mileage as levers for profitability
+
+## 🛠️ Tools
+
+SQL · Microsoft Excel · Power BI · Miro · PowerPoint / Canva · GitHub
 
 ---
 
-## 🏗️ Project Structure
+<div align="center">
 
-This repository contains:
+Built by **Godfrey Siphamandla Moyo** as part of the BrightLearn Data Analytics programme ·
+[GitHub](https://github.com/Rocky101798) · [LinkedIn](https://www.linkedin.com/in/godfrey-siphamandla-moyo-761aba152)
 
-* SQL scripts (`car_sales_queries.sql`)
-* Processed dataset
-* Data visualizations (Excel / Power BI)
-* Presentation slides (`BrightMotors_Presentation.pdf`)
-* Architecture diagram
-* README file
-
----
-
-## 🧩 Data Architecture
-
-```text
-Raw CSV Data
-      ↓
-Data Cleaning (SQL)
-      ↓
-Database Storage
-      ↓
-Analysis (SQL)
-      ↓
-Visualization (Excel / Power BI)
-      ↓
-Presentation
-```
-
----
-
-## 👤 Author
-
-**Siphamandla Moyo**
-
----
-
-## 📥 Submission
-
-This project was completed as part of a BrightLearn Data Analytics case study focused on generating business insights for Bright Motors. 
+</div>
